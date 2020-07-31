@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 100
 skip-string-normalization = true
-target-version = ["py36", "py37", "py38"]
+target-version = ['py36', 'py37', 'py38']
 exclude = '''
 /(
     \.pytest_cache
@@ -10,7 +10,7 @@ exclude = '''
 '''
 
 [tool.check-manifest]
-ignore = [".travis.yml", ".gitignore"]
+ignore = ['.travis.yml', '.gitignore']
 
 [tool.interrogate]
 ignore-init-method = true
@@ -19,9 +19,9 @@ ignore-magic = false
 ignore-semiprivate = false
 ignore-private = false
 ignore-module = false
-fail-under = 60
-exclude = []
-ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
-verbose = 0
+fail-under = 90
+exclude = ['tests']
+ignore-regex = ['^get$', '^mock_.*', '.*BaseClass.*']
+verbose = 1
 quiet = false
 whitelist-regex = []

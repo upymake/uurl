@@ -1,8 +1,8 @@
 attrs==19.3.0
 click==7.1.1
 dataclasses==0.6
-enforce-pep8==0.0.5
+enforce-pep8==0.0.9
 pypans==0.0.13
-requests==2.23.01
+requests==2.23.0
 urequest==0.0.6
 urllib3==1.25.10

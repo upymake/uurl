@@ -150,9 +150,9 @@ DOC
       check-pylint && \
       check-flake && \
       check-docstrings && \
-      check-unittests
+      check-unittests && \
+      is-passed
     )
-    is-passed
 }
 
 main
