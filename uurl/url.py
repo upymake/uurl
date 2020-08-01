@@ -93,7 +93,7 @@ class HttpsUrl(Address):
         """Returns a path of the HTTPS URL."""
         return self._https.matcher()
 
-    def host(self, with_port: bool) -> str:
+    def host(self, with_port: bool = False) -> str:
         """Returns a domain name (host).
 
         Args:
