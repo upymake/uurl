@@ -11,12 +11,13 @@
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/uurl.svg)](https://pypi.python.org/pypi/uurl/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/uurl.svg)](https://pypi.python.org/pypi/uurl/)
+[![Downloads](https://pepy.tech/badge/uurl)](https://pepy.tech/project/uurl)
 
 # uURL
 
 > Provides user-friendly unified resource locator (URL) client with nothing but clean objects.
-
-_**Note**: project is under construction_
 
 ## Tools
 
