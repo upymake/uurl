@@ -11,12 +11,12 @@ class Port(AbstractStyle):
         pass
 
     @abstractstyle
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Described UDP protocol is standardized, specified or widely used for the port number."""
         pass
 
     @abstractstyle
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Described TCP protocol is standardized, specified or widely used for the port number."""
         pass
 
@@ -29,45 +29,45 @@ class Port(AbstractStyle):
 class NetworkPort(Port):
     """Represents network port."""
 
-    def __init__(self, port: int, is_upd: bool, is_tcp: bool) -> None:
+    def __init__(self, port: int, has_upd: bool, has_tcp: bool) -> None:
         self._port = port
-        self._is_udp = is_upd
-        self._is_tcp = is_tcp
+        self._has_udp = has_upd
+        self._has_tcp = has_tcp
 
     def value(self) -> int:
         """Returns value of a network port."""
         return self._port
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._is_udp
+        return self._has_udp
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._is_tcp
+        return self._has_tcp
 
     def __str__(self) -> str:
         """Returns string representation of a network port."""
-        return f'{self._port} port; Has UDP = {self._is_udp}; Has TCP = {self._is_tcp}'
+        return f'{self._port} port; Has UDP = {self._has_udp}; Has TCP = {self._has_tcp}'
 
 
 class HttpPort(Port):
     """Represents HTTP port."""
 
     def __init__(self) -> None:
-        self._http: Port = NetworkPort(port=80, is_upd=True, is_tcp=False)
+        self._http: Port = NetworkPort(port=80, has_upd=True, has_tcp=False)
 
     def value(self) -> int:
         """Returns value of HTTP port."""
         return self._http.value()
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._http.is_udp()
+        return self._http.has_udp()
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._http.is_tcp()
+        return self._http.has_tcp()
 
     def __str__(self) -> str:
         """Returns value of HTTP port."""
@@ -78,19 +78,19 @@ class HttpsPort(Port):
     """Represents HTTPS port."""
 
     def __init__(self) -> None:
-        self._https: Port = NetworkPort(port=443, is_upd=True, is_tcp=True)
+        self._https: Port = NetworkPort(port=443, has_upd=True, has_tcp=True)
 
     def value(self) -> int:
         """Returns value of HTTPS port."""
         return self._https.value()
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._https.is_udp()
+        return self._https.has_udp()
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._https.is_tcp()
+        return self._https.has_tcp()
 
     def __str__(self) -> str:
         """Returns value of HTTPS port."""
@@ -101,19 +101,19 @@ class FtpPort(Port):
     """Represents FTP port."""
 
     def __init__(self) -> None:
-        self._ftp: Port = NetworkPort(port=21, is_upd=True, is_tcp=False)
+        self._ftp: Port = NetworkPort(port=21, has_upd=True, has_tcp=False)
 
     def value(self) -> int:
         """Returns value of FTP port."""
         return self._ftp.value()
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._ftp.is_udp()
+        return self._ftp.has_udp()
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._ftp.is_tcp()
+        return self._ftp.has_tcp()
 
     def __str__(self) -> str:
         """Returns value of FTP port."""
@@ -124,19 +124,19 @@ class SftpPort(Port):
     """Represents SFTP port."""
 
     def __init__(self) -> None:
-        self._sftp: Port = NetworkPort(port=22, is_upd=True, is_tcp=False)
+        self._sftp: Port = NetworkPort(port=22, has_upd=True, has_tcp=False)
 
     def value(self) -> int:
         """Returns value of SFTP port."""
         return self._sftp.value()
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._sftp.is_udp()
+        return self._sftp.has_udp()
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._sftp.is_tcp()
+        return self._sftp.has_tcp()
 
     def __str__(self) -> str:
         """Returns value of SFTP port."""
@@ -147,19 +147,19 @@ class SnmpPort(Port):
     """Represents SNMP port."""
 
     def __init__(self) -> None:
-        self._snmp: Port = NetworkPort(port=161, is_upd=False, is_tcp=True)
+        self._snmp: Port = NetworkPort(port=161, has_upd=False, has_tcp=True)
 
     def value(self) -> int:
         """Returns value of SNMP port."""
         return self._snmp.value()
 
-    def is_udp(self) -> bool:
+    def has_udp(self) -> bool:
         """Supported by UPD protocol."""
-        return self._snmp.is_udp()
+        return self._snmp.has_udp()
 
-    def is_tcp(self) -> bool:
+    def has_tcp(self) -> bool:
         """Supported by TCP protocol."""
-        return self._snmp.is_tcp()
+        return self._snmp.has_tcp()
 
     def __str__(self) -> str:
         """Returns value of SNMP port."""

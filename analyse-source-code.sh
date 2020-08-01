@@ -59,7 +59,7 @@ check-flake() {
     Runs "flake8" static format checker assessment
 DOC
     (
-      logging-box "flake8 analysis" && flake8 "${CURRENT_DIR}"
+      logging-box "flake8 analysis" && flake8 "${PACKAGE}"
     ) || error-message "flake8 analysis is failed"
 }
 
@@ -69,7 +69,7 @@ check-mypy() {
     Runs "mypy" static type checker assessment
 DOC
     (
-      logging-box "mypy analysis" && mypy "${CURRENT_DIR}"
+      logging-box "mypy analysis" && mypy "${PACKAGE}"
     ) || error-message "mypy analysis is failed"
 }
 
