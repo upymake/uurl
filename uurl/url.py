@@ -3,6 +3,7 @@ from punish import AbstractStyle, abstractstyle
 from uurl.host import Host
 from uurl.path import EmptyPath, Path
 from uurl.protocol import HttpProtocol, HttpsProtocol, Protocol
+from uurl.port import Port
 
 
 class Address(AbstractStyle):
@@ -20,6 +21,16 @@ class Address(AbstractStyle):
         Args:
             with_port (bool): host with port
         """
+        pass
+
+    @abstractstyle
+    def protocol(self) -> Protocol:
+        """Returns a protocol of the URL."""
+        pass
+
+    @abstractstyle
+    def port(self) -> Port:
+        """Returns a port of the URL."""
         pass
 
     @abstractstyle
@@ -50,14 +61,19 @@ class Url(Address):
             return self._host.value_with_port(self._protocol.port())
         return self._host.value()
 
+    def protocol(self) -> Protocol:
+        """Returns a protocol of the URL."""
+        return self._protocol
+
+    def port(self) -> Port:
+        """Returns a port of the URL."""
+        return self._protocol.port()
+
     def __str__(self) -> str:
         """Returns address as a string."""
         if self._host.begin_with_protocol(self._protocol):
             return self.host(with_port=True)
-        return (
-            f'{self._protocol.value()}://{self._host.value_with_port(self._protocol.port())}/'
-            f'{self._path}'
-        )
+        return f'{self._protocol.value()}://{self._host.value_with_port(self.port())}/{self._path}'
 
 
 class HttpUrl(Address):
@@ -77,6 +93,14 @@ class HttpUrl(Address):
             with_port (bool): host with port
         """
         return self._http.host(with_port)
+
+    def protocol(self) -> Protocol:
+        """Returns a protocol of the URL."""
+        return self._http.protocol()
+
+    def port(self) -> Port:
+        """Returns a port of the URL."""
+        return self._http.port()
 
     def __str__(self) -> str:
         """Returns address as a string."""
@@ -100,6 +124,14 @@ class HttpsUrl(Address):
             with_port (bool): host with port
         """
         return self._https.host(with_port)
+
+    def protocol(self) -> Protocol:
+        """Returns a protocol of the URL."""
+        return self._https.protocol()
+
+    def port(self) -> Port:
+        """Returns a port of the URL."""
+        return self._https.port()
 
     def __str__(self) -> str:
         """Returns address as a string."""
