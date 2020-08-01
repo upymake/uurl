@@ -34,7 +34,7 @@ class Url(Address):
 
     def matcher(self) -> str:
         """Returns a path of the URL."""
-        return self._path.compose()
+        return str(self._path)
 
     def host(self) -> str:
         """Returns a domain name (host)."""
@@ -46,7 +46,7 @@ class Url(Address):
             return self._host.value_with_port(self._protocol.port())
         return (
             f'{self._protocol.value()}://{self._host.value_with_port(self._protocol.port())}/'
-            f'{self._path.compose()}'
+            f'{self._path}'
         )
 
 

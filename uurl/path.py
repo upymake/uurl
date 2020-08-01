@@ -7,12 +7,12 @@ class Path(AbstractStyle):
     """Represents an abstract path."""
 
     @abstractstyle
-    def count(self) -> int:
+    def __len__(self) -> int:
         """Count path endpoints."""
         pass
 
     @abstractstyle
-    def compose(self) -> str:
+    def __str__(self) -> str:
         """Assemble a path."""
         pass
 
@@ -32,11 +32,11 @@ class UrlPath(Path):
     def __init__(self, *path: str) -> None:
         self._path: Sequence[str] = path
 
-    def count(self) -> int:
+    def __len__(self) -> int:
         """Count path endpoints."""
         return len(self._path)
 
-    def compose(self) -> str:
+    def __str__(self) -> str:
         """Assemble a path."""
         if self._has_forward_slash():
             return '/'.join(map(str, self._path[1:]))
@@ -58,11 +58,11 @@ class UrlPath(Path):
 class EmptyPath(Path):
     """Represents empty path endpoint."""
 
-    def count(self) -> int:
+    def __len__(self) -> int:
         """Count path endpoints."""
         return 0
 
-    def compose(self) -> str:
+    def __str__(self) -> str:
         """Assemble a path."""
         return ''
 
