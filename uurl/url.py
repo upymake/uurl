@@ -1,5 +1,8 @@
 """The module provides API for Unified Resource Locator (URL) endpoints."""
 from punish import AbstractStyle, abstractstyle
+from uurl.host import Host
+from uurl.path import EmptyPath, Path
+from uurl.protocol import HttpProtocol, HttpsProtocol, Protocol
 
 
 class Address(AbstractStyle):
@@ -24,34 +27,34 @@ class Address(AbstractStyle):
 class Url(Address):
     """The class represents regular WEB URL item."""
 
-    def __init__(self, host: str, protocol: str, path: str = '') -> None:
+    def __init__(self, host: Host, protocol: Protocol, path: Path = EmptyPath()) -> None:
         self._host = host
         self._path = path
         self._protocol = protocol
 
     def matcher(self) -> str:
         """Returns a path of the URL."""
-        return self._path
+        return self._path.compose()
 
     def host(self) -> str:
         """Returns a domain name (host)."""
-        return self._host
+        return self._host.value()
 
     def __str__(self) -> str:
         """Returns address as a string."""
-        if self._host.startswith(self._protocol):
-            return self._host
+        if self._host.begin_with_protocol(self._protocol):
+            return self._host.value_with_port(self._protocol.port())
         return (
-            f'{self._protocol}://{self._host}/'
-            f'{self._path if not self._path.startswith("/") else self._path[1:]}'
+            f'{self._protocol.value()}://{self._host.value_with_port(self._protocol.port())}/'
+            f'{self._path.compose()}'
         )
 
 
 class HttpUrl(Address):
     """The class represents HTTP WEB URL item."""
 
-    def __init__(self, host: str, path: str = '') -> None:
-        self._http: Url = Url(host, protocol='http', path=path)
+    def __init__(self, host: Host, path: Path = EmptyPath()) -> None:
+        self._http: Url = Url(host, protocol=HttpProtocol(), path=path)
 
     def matcher(self) -> str:
         """Returns a path of the HTTP URL."""
@@ -69,8 +72,8 @@ class HttpUrl(Address):
 class HttpsUrl(Address):
     """The class represents HTTPS WEB URL item."""
 
-    def __init__(self, host: str, path: str = '') -> None:
-        self._https: Url = Url(host, protocol='https', path=path)
+    def __init__(self, host: Host, path: Path = EmptyPath()) -> None:
+        self._https: Url = Url(host, protocol=HttpsProtocol(), path=path)
 
     def matcher(self) -> str:
         """Returns a path of the HTTPS URL."""
