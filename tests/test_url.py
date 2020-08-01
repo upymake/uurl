@@ -58,7 +58,7 @@ def test_url_without_leading_slash(
     url_without_leading_slash: Address, http_protocol: Protocol, host: Host, url_path: Path
 ) -> None:
     assert str(url_without_leading_slash) == (
-        f'{http_protocol.value()}://{host.value_with_port(http_protocol.port())}/' f'{url_path}'
+        f'{http_protocol.value()}://{host.value_with_port(http_protocol.port())}/{url_path}'
     )
 
 
