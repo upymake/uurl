@@ -6,11 +6,11 @@ from uurl.path import EmptyPath, Path, UrlPath
 from uurl.protocol import HttpProtocol, HttpsProtocol, NetworkProtocol, Protocol
 from uurl.port import HttpPort, HttpsPort, NetworkPort, Port
 
-__author__: str = "Volodymyr Yahello"
-__email__: str = "vyahello@gmail.com"
-__license__: str = "MIT"
-__copyright__: str = f"Copyright 2020, {__author__}"
-__version__: str = "0.0.0"
+__author__: str = 'Volodymyr Yahello'
+__email__: str = 'vyahello@gmail.com'
+__license__: str = 'MIT'
+__copyright__: str = f'Copyright 2020, {__author__}'
+__version__: str = '0.0.1'
 
 __all__: Tuple[str, ...] = (
     'Address',
