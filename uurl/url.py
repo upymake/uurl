@@ -14,7 +14,7 @@ class Address(AbstractStyle):
         pass
 
     @abstractstyle
-    def host(self, with_port: bool) -> str:
+    def host(self, with_port: bool = False) -> str:
         """Returns a domain name (host).
 
         Args:
@@ -40,7 +40,7 @@ class Url(Address):
         """Returns a path of the URL."""
         return str(self._path)
 
-    def host(self, with_port: bool) -> str:
+    def host(self, with_port: bool = False) -> str:
         """Returns a domain name (host).
 
         Args:
@@ -70,7 +70,7 @@ class HttpUrl(Address):
         """Returns a path of the HTTP URL."""
         return self._http.matcher()
 
-    def host(self, with_port: bool) -> str:
+    def host(self, with_port: bool = False) -> str:
         """Returns a domain name (host).
 
         Args:

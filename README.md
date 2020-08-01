@@ -31,12 +31,44 @@ _**Note**: project is under construction_
   - [pydocstyle](https://github.com/PyCQA/pydocstyle)
 
 ## Usage
-
-### Quick start
-
+To obtain latest package from PYPI, please run following script:
 ```bash
 pip install uurl
 ✨ 🍰 ✨
+```
+
+### Quick start
+
+#### Pre-defined URL
+```python
+>>> from uurl import Host, HttpsUrl, UrlPath
+>>> url = HttpsUrl(Host('example.com'), UrlPath('shelter', 'index.html'))
+>>> url.matcher()
+'shelter/index.html'
+>>> url.host()
+'example.com'
+>>> url.host(with_port=True)
+'example.com:443'
+>>> str(url)
+'https://example.com:443/shelter/index.html'
+```
+
+#### Custom URL
+```python
+>>> from uurl import Host, NetworkProtocol, NetworkPort, Url, UrlPath
+>>> url = Url(
+...    Host('0.0.0.0'),
+...    NetworkProtocol('http', NetworkPort(8080, has_upd=True, has_tcp=True)),
+...    UrlPath('api', 'rest', '1001')
+... )
+>>> url.matcher()
+'api/rest/1001'
+>>> url.host()
+'0.0.0.0'
+>>> url.host(with_port=True)
+'0.0.0.0:8080'
+>>> str(url)
+'http://0.0.0.0:8080/api/rest/1001'
 ```
 
 ## Development notes
