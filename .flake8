@@ -7,5 +7,7 @@ max-annotations-complexity = 4
 max-function-length = 30
 statistics = True
 count = True
+pytest-parametrize-names-type = csv
+pytest-parametrize-values-type = tuple
 eradicate-aggressive = True
 ignore = U100, I100, I201, ANN101, ANN102

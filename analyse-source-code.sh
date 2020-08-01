@@ -59,7 +59,7 @@ check-flake() {
     Runs "flake8" static format checker assessment
 DOC
     (
-      logging-box "flake8 analysis" && flake8 "${PACKAGE}"
+      logging-box "flake8 analysis" && flake8 "${CURRENT_DIR}"
     ) || error-message "flake8 analysis is failed"
 }
 
