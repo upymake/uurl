@@ -1,6 +1,8 @@
 import pytest
 from uurl.path import EmptyPath, Path, UrlPath
 
+pytestmark = pytest.mark.unit
+
 
 @pytest.fixture()
 def url_path() -> Path:
@@ -34,4 +36,3 @@ def test_count_empty_path(empty_path: Path) -> None:
 
 def test_assemble_empty_path(empty_path: Path) -> None:
     assert str(empty_path) == ''
-

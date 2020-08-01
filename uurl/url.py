@@ -14,8 +14,12 @@ class Address(AbstractStyle):
         pass
 
     @abstractstyle
-    def host(self) -> str:
-        """Returns a domain name (host)."""
+    def host(self, with_port: bool) -> str:
+        """Returns a domain name (host).
+
+        Args:
+            with_port (bool): host with port
+        """
         pass
 
     @abstractstyle
@@ -36,14 +40,20 @@ class Url(Address):
         """Returns a path of the URL."""
         return str(self._path)
 
-    def host(self) -> str:
-        """Returns a domain name (host)."""
+    def host(self, with_port: bool) -> str:
+        """Returns a domain name (host).
+
+        Args:
+            with_port (bool): host with port
+        """
+        if with_port:
+            return self._host.value_with_port(self._protocol.port())
         return self._host.value()
 
     def __str__(self) -> str:
         """Returns address as a string."""
         if self._host.begin_with_protocol(self._protocol):
-            return self._host.value_with_port(self._protocol.port())
+            return self.host(with_port=True)
         return (
             f'{self._protocol.value()}://{self._host.value_with_port(self._protocol.port())}/'
             f'{self._path}'
@@ -60,9 +70,13 @@ class HttpUrl(Address):
         """Returns a path of the HTTP URL."""
         return self._http.matcher()
 
-    def host(self) -> str:
-        """Returns a domain name (host)."""
-        return self._http.host()
+    def host(self, with_port: bool) -> str:
+        """Returns a domain name (host).
+
+        Args:
+            with_port (bool): host with port
+        """
+        return self._http.host(with_port)
 
     def __str__(self) -> str:
         """Returns address as a string."""
@@ -79,9 +93,13 @@ class HttpsUrl(Address):
         """Returns a path of the HTTPS URL."""
         return self._https.matcher()
 
-    def host(self) -> str:
-        """Returns a domain name (host)."""
-        return self._https.host()
+    def host(self, with_port: bool) -> str:
+        """Returns a domain name (host).
+
+        Args:
+            with_port (bool): host with port
+        """
+        return self._https.host(with_port)
 
     def __str__(self) -> str:
         """Returns address as a string."""
