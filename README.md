@@ -13,6 +13,7 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/uurl.svg)](https://pypi.python.org/pypi/uurl/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/uurl.svg)](https://pypi.python.org/pypi/uurl/)
+[![CodeFactor](https://www.codefactor.io/repository/github/upymake/uurl/badge)](https://www.codefactor.io/repository/github/upymake/uurl)
 [![Downloads](https://pepy.tech/badge/uurl)](https://pepy.tech/project/uurl)
 
 # uURL
